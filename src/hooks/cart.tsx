@@ -44,16 +44,6 @@ const CartProvider: React.FC = ({ children }) => {
     loadProducts();
   }, []);
 
-  useEffect(() => {
-    async function saveProducts(): Promise<Product[]> {
-      await AsyncStorage.setItem('@products:cart', JSON.stringify(products));
-
-      return {} as Product[];
-    }
-
-    saveProducts();
-  }, [products]);
-
   const increment = useCallback(
     async id => {
       const findItem = products.findIndex(item => item.id === id);
@@ -66,6 +56,8 @@ const CartProvider: React.FC = ({ children }) => {
       };
 
       setProducts([...products]);
+
+      await AsyncStorage.setItem('@products:cart', JSON.stringify(products));
     },
     [products],
   );
@@ -85,21 +77,25 @@ const CartProvider: React.FC = ({ children }) => {
 
         setProducts(product.filter(item => item.id !== id));
 
+        await AsyncStorage.setItem('@products:cart', JSON.stringify(products));
+
         return;
       }
 
       product[findItem] = {
         ...product[findItem],
-        quantity: product[findItem].quantity - 1,
+        quantity: product[findItem].quantity -= 1,
       };
 
       setProducts([...products]);
+
+      await AsyncStorage.setItem('@products:cart', JSON.stringify(products));
     },
     [products],
   );
 
   const addToCart = useCallback(
-    (product: Omit<Product, 'quantity'>) => {
+    async (product: Omit<Product, 'quantity'>) => {
       const findItem = products.findIndex(item => item.id === product.id);
 
       if (findItem < 0) {
@@ -109,6 +105,8 @@ const CartProvider: React.FC = ({ children }) => {
         };
 
         setProducts([...products, addItem]);
+
+        await AsyncStorage.setItem('@products:cart', JSON.stringify(products));
 
         return;
       }
