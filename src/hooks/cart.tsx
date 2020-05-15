@@ -29,24 +29,94 @@ const CartProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    async function loadProducts(): Promise<void> {
-      // TODO LOAD ITEMS FROM ASYNC STORAGE
+    async function loadProducts(): Promise<Product[]> {
+      const loadProductsFromStorage = await AsyncStorage.getItem(
+        '@products:cart',
+      );
+
+      if (loadProductsFromStorage) {
+        setProducts(JSON.parse(loadProductsFromStorage));
+      }
+
+      return {} as Product[];
     }
 
     loadProducts();
   }, []);
 
-  const addToCart = useCallback(async product => {
-    // TODO ADD A NEW ITEM TO THE CART
-  }, []);
+  useEffect(() => {
+    async function saveProducts(): Promise<Product[]> {
+      await AsyncStorage.setItem('@products:cart', JSON.stringify(products));
 
-  const increment = useCallback(async id => {
-    // TODO INCREMENTS A PRODUCT QUANTITY IN THE CART
-  }, []);
+      return {} as Product[];
+    }
 
-  const decrement = useCallback(async id => {
-    // TODO DECREMENTS A PRODUCT QUANTITY IN THE CART
-  }, []);
+    saveProducts();
+  }, [products]);
+
+  const increment = useCallback(
+    async id => {
+      const findItem = products.findIndex(item => item.id === id);
+
+      const product = products[findItem];
+
+      products[findItem] = {
+        ...product,
+        quantity: product.quantity += 1,
+      };
+
+      setProducts([...products]);
+    },
+    [products],
+  );
+
+  const decrement = useCallback(
+    async id => {
+      const findItem = products.findIndex(item => item.id === id);
+
+      if (findItem === -1) {
+        throw new Error('Produto não encontrado');
+      }
+
+      const product = [...products];
+
+      if (product[findItem].quantity === 1) {
+        product.splice(findItem, 1);
+
+        setProducts(product.filter(item => item.id !== id));
+
+        return;
+      }
+
+      product[findItem] = {
+        ...product[findItem],
+        quantity: product[findItem].quantity - 1,
+      };
+
+      setProducts([...products]);
+    },
+    [products],
+  );
+
+  const addToCart = useCallback(
+    (product: Omit<Product, 'quantity'>) => {
+      const findItem = products.findIndex(item => item.id === product.id);
+
+      if (findItem < 0) {
+        const addItem = {
+          ...product,
+          quantity: 1,
+        };
+
+        setProducts([...products, addItem]);
+
+        return;
+      }
+
+      increment(product.id);
+    },
+    [products, increment],
+  );
 
   const value = React.useMemo(
     () => ({ addToCart, increment, decrement, products }),
