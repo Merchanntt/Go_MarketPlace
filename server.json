@@ -2,27 +2,43 @@
   "products": [
     {
       "id": "123",
-      "title": "Nome do produto 01",
+      "title": "CAMISETA RocketSeat (PRETO)",
       "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
       "price": 50
     },
     {
       "id": "1234",
-      "title": "Nome do produto 02",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
-      "price": 60
+      "title": "CAMISETA VANS OTW (BRANCO)",
+      "image_url": "https://img.elo7.com.br/product/main/2843D9E/camiseta-raglan-vans-camiseta-manga-curta-vans.jpg",
+      "price": 80,
+      "description": "A camiseta Vans OTW masculina possui uma modelagem básica e clássica, e adequado para o dia-a-dia. "
     },
     {
       "id": "12345",
-      "title": "Nome do produto 03",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
-      "price": 70
+      "title": "Bermuda Moletom Knit Adidas",
+      "image_url": "https://cdnv2.moovin.com.br/visualcalcadoseesportes/imagens/produtos/original/bermuda-moletom-knit-adidas-masculina-dj3490-32ac3cd1fd008b86d0588418258aac5c.jpg",
+      "price": 110,
+      "description": "A Bermuda Moletom Knit Adidas Masculina ideal para uso diário e passeios, completa um look mais despojado e casual."
     },
     {
       "id": "123456",
-      "title": "Nome do produto 04",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
-      "price": 80
+      "title": "BLUSA MOLETOM CREW",
+      "image_url": "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/947fe86eb9db401b83c6aafe01019bc0_9366/Blusa_Moletom_Crew_Rosa_FM4387_01_laydown.jpg",
+      "price": 199,
+      "description": " Esta blusa com faixa de logos e as Três Listras nos punhos vai deixar suas outras roupas com uma pontinha de ciúmes de tão estilosa. O tecido de fleece oferece maciez e aquecimento."
+    },
+    {
+      "id": "1234567",
+      "title": "Tênis 'Air Jordan 1 ",
+      "image_url": "https://cdn-images.farfetch-contents.com/12/96/03/49/12960349_13486595_1000.jpg",
+      "price": 800,
+      "description": "Imagine um tênis difícil de achar, em qualquer lugar do mundo, este é um deles."
+    },{
+      "id": "12345678",
+      "title": "Gorro Chronic",
+      "image_url": "https://a-static.mlcdn.com.br/618x463/touca-gorro-chronic-preto-pompom-removivel-original/mpmodamasculina/6029256937/a0cca0c621386087d327f3d799ed44af.jpg",
+      "price": 60,
+      "description": "Touca Gorro Chronic Preto Pompom Removível Original"
     }
   ]
 }

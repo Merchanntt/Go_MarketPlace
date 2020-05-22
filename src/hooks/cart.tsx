@@ -14,6 +14,7 @@ interface Product {
   image_url: string;
   price: number;
   quantity: number;
+  description?: string;
 }
 
 interface CartContext {

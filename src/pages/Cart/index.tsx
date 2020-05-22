@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 
 import {
   Container,
@@ -33,10 +34,16 @@ interface Product {
   image_url: string;
   price: number;
   quantity: number;
+  description?: string;
 }
 
 const Cart: React.FC = () => {
   const { increment, decrement, products } = useCart();
+  const navigation = useNavigation();
+
+  function navigateTo(item: Product) {
+    navigation.navigate('Details', { item });
+  }
 
   function handleIncrement(id: string): void {
     increment(id);
@@ -78,7 +85,9 @@ const Cart: React.FC = () => {
           }}
           renderItem={({ item }: { item: Product }) => (
             <Product>
-              <ProductImage source={{ uri: item.image_url }} />
+              <TouchableWithoutFeedback onPress={() => navigateTo(item)}>
+                <ProductImage source={{ uri: item.image_url }} />
+              </TouchableWithoutFeedback>
               <ProductTitleContainer>
                 <ProductTitle>{item.title}</ProductTitle>
                 <ProductPriceContainer>

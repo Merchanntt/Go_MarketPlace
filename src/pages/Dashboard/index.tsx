@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 
 import formatValue from '../../utils/formatValue';
 import { useCart } from '../../hooks/cart';
@@ -26,12 +27,18 @@ interface Product {
   title: string;
   image_url: string;
   price: number;
+  description?: string;
 }
 
 const Dashboard: React.FC = () => {
   const { addToCart } = useCart();
+  const navigation = useNavigation();
 
   const [products, setProducts] = useState<Product[]>([]);
+
+  function navigationTo(item: Product): void {
+    navigation.navigate('Details', { item });
+  }
 
   useEffect(() => {
     async function loadProducts(): Promise<void> {
@@ -63,7 +70,10 @@ const Dashboard: React.FC = () => {
           }}
           renderItem={({ item }) => (
             <Product>
-              <ProductImage source={{ uri: item.image_url }} />
+              <TouchableWithoutFeedback onPress={() => navigationTo(item)}>
+                <ProductImage source={{ uri: item.image_url }} />
+              </TouchableWithoutFeedback>
+
               <ProductTitle>{item.title}</ProductTitle>
               <PriceContainer>
                 <ProductPrice>{formatValue(item.price)}</ProductPrice>
