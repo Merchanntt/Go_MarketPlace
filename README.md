@@ -5,9 +5,7 @@
 ![node-current](https://img.shields.io/node/v/package)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Merchanntt/Go_MarketPlace)
 
-![](https://media.giphy.com/media/1zt0t7PRNzBbdEFbEn/giphy.gif)
-![](https://media.giphy.com/media/sXgr1jglXfQ2wMlDwL/giphy.gif)
-![](https://media.giphy.com/media/pz3jSoU6IlYKdejjFI/giphy.gif)
+![](https://media.giphy.com/media/9hQfcbpBtuixjFJDjy/giphy.gif)
 
 </div>
 
